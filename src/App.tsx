@@ -1,11 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
+import { StockInput } from './components/StockInput';
+import { SearchResultList } from './components/SearchResultList';
+import { StockData } from './models/StockData.model';
+import { StockName } from './models/StockName.model';
 
 function App() {
+  // console.log('Render from app component');
+  const [searchResults, setSearchResults] = useState<StockName[] | undefined >();
+  const [selectedStocks, setSelectedStocks] = useState<StockData[] | undefined>();
+  // useEffect(() => {
+    // console.log('in useEffect');
+    // console.log(JSON.stringify(searchResults));
+  // }, [searchResults])
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
@@ -18,7 +28,9 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
+      <StockInput setSearchResults={setSearchResults} />
+      <SearchResultList searchResults={searchResults} />
     </div>
   );
 }
