@@ -2,9 +2,10 @@ import { StockName } from "./StockName.model";
 
 interface StockData {
   id: string;
-  brandingInfo: StockName;
   changePercentage: string;
-  eps: string;
+  earningsPerShare: string;
+  name: string;
+  symbol: string;
 }
 
 export type { StockData }

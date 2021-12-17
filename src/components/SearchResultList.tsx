@@ -1,21 +1,23 @@
-import { StockName } from "../models/StockName.model";
-import { SearchResultItem } from "./SearchResultItem";
-
 interface SearchResultListProps {
-  searchResults: StockName[] | undefined
+  children: JSX.Element[] | undefined
 }
 
-const SearchResultList = ({ searchResults }: SearchResultListProps) => {
-  // console.log('SearchResultList Rendered.');
+const SearchResultList = ({ children }: SearchResultListProps) => {
+  console.log('Render from SearchResultList');
   // searchResults.forEach(result => console.log(result.symbol));
   return (
     <section>
-      {!searchResults ? <p>Enter some shit</p> : null }
+      { children }
+            {/* {!searchResults ? <p>Enter some shit</p> : <></> }
+        {searchResults && !searchResults?.length ? <p>No Results Found</p> : <></> }
+        {!searchResults ? <p>Enter some shit</p> : <></> }
+        {searchResults && !searchResults?.length ? <p>No Results Found</p> : <></> } */}
+      {/* {!searchResults ? <p>Enter some shit</p> : null }
       {searchResults && !searchResults?.length ? <p>No Results Found</p> : null }
       {searchResults?.map(result => (
         <SearchResultItem symbol={result.symbol} name={result.name} />
       ))
-      }
+      } */}
     </section>
   );
 }
