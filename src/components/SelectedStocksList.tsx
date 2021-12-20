@@ -3,9 +3,8 @@ interface SelectedStocksListProps {
 }
 
 const SelectedStocksList = ({ children }: SelectedStocksListProps) => {
-  console.log('Render from SelectedStocksList');
   return (
-    <section>
+    <section className="selected-stocks-section">
       { children }
     </section>
   );

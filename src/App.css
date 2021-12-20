@@ -1,70 +1,120 @@
-.stock-list-item:hover {
-  background-color: aqua;
-  cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Remove this uneeded CSS */
-
 .App {
+  box-sizing: border-box;
+  margin: 1em;
+}
+
+.stock-input-section {
+  display: flex;
+  justify-content: center;
+}
+
+.stock-list-item {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+
+.stock-list-detail {
+  display: inline-block;
+}
+
+.stock-list-item-detail.name {
+  margin-right: 2em;
+}
+
+.stock-list-item:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.form-label,
+.form-input,
+.form-button {
+  margin-right: 1em;
+}
+
+.form-button {
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  min-width: 0;
+  outline: none;
+  padding: 8px 24px;
   text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form-button:hover,
+.form-button:focus {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.form-button:active {
+  box-shadow: none;
+  transform: translateY(0);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.search-result-section {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.search-result-container {
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.selected-stock-container {
+  width: 33.33%;
+  min-height: 500px;
+  padding: 1em;
+}
+
+.selected-stock-container.border-right {
+  border-right: 1px solid black;
+  padding-right: 1em;
+}
+
+.remove-container {
+  margin-bottom: 5px;
+  text-align: right;
+}
+
+.remove-container .remove {
+  text-align: right;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.selected-stock-item .percent-positive {
+  color: green;
+}
+
+.selected-stock-item .percent-negative {
+  color: red;
+}
+
+.selected-stocks-section {
+  display: flex;
+  justify-content: space-around;
+}
+
+.search-result-section,
+.selected-stocks-section,
+.stock-input-section {
+  margin-bottom: 1em;
 }
