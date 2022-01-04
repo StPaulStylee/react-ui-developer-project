@@ -9,7 +9,6 @@ interface StockInputProps {
 }
 
 const StockInput = ({ setSearchResults }: StockInputProps) => {
-  console.log('Render from StockInput');
   const [currentSearch, setCurrentSearch] = useState('');
 
   const submitSearch = async (event: MouseEvent) => {
@@ -21,8 +20,6 @@ const StockInput = ({ setSearchResults }: StockInputProps) => {
     }
     // update this call to take in a config which pulls values from .env
     const symbolResponse = await fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${currentSearch}&apikey=Q9SOLJTLGQ84PKLR`);
-    // This is resused a lot - make a utility function that is generic
-    // const results: SymbolSearchResult  = await symbolResponse.json();
     const results = await getDataFromFetch<SymbolSearchResult>(symbolResponse);
     const formattedResults = formatSearchResults(results)
     setSearchResults(formattedResults);
@@ -38,12 +35,14 @@ const StockInput = ({ setSearchResults }: StockInputProps) => {
   }
 
   return (
-    <form>
-      <label htmlFor="stock-search">Find a stock by Symbol or Name</label>
-      <input id="stock-search" onChange={updateCurrentSearch} />
-      <button type="submit" onClick={submitSearch}>Find</button>
-      <button onClick={clearSearch}>Clear</button>
-    </form>
+    <section className="stock-input-section">
+      <form>
+        <label className="form-label" htmlFor="stock-search">Find a stock by Symbol or Name</label>
+        <input className="form-input" id="stock-search" onChange={updateCurrentSearch} />
+        <button className="form-button search" type="submit" onClick={submitSearch}>Find</button>
+        <button className="form-button clear" onClick={clearSearch}>Clear</button>
+      </form>
+    </section>
   )
 }
 

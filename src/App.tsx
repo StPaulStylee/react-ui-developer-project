@@ -13,8 +13,7 @@ import { SelectedStockItem } from './components/SelectedStockItem';
 import { getDataFromFetch } from './utilities/fetchUtility';
 
 function App() {
-  console.log('Render from app component');
-  const [searchResults, setSearchResults] = useState<StockName[]>([]);
+  const [searchResults, setSearchResults] = useState<StockName[]>(new Array(3));
   const [selectedStocks, setSelectedStocks] = useState<StockData[]>([]);
   const handleSelectedStock = async (selectedStock: string) => {
     const overviewResponse = await fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${selectedStock}&apikey=Q9SOLJTLGQ84PKLR`);
@@ -35,10 +34,9 @@ function App() {
         }
       </SearchResultList>
       <SelectedStocksList>
-        {selectedStocks.map(stock => (
-          <SelectedStockItem data={stock} key={stock.id}/>
-        ))
-        }
+        <SelectedStockItem data={selectedStocks[0]} setSelectedStocks={setSelectedStocks} border={true} key="0" />
+        <SelectedStockItem data={selectedStocks[1]} setSelectedStocks={setSelectedStocks} border={true} key="1" />
+        <SelectedStockItem data={selectedStocks[2]} setSelectedStocks={setSelectedStocks} border={false} key="2" />
       </SelectedStocksList>
     </div>
   );

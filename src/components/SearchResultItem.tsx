@@ -5,15 +5,14 @@ interface SearchResultItemProps {
 }
 
 const SearchResultItem = ({ handleClick, name, symbol }: SearchResultItemProps) => {
-  console.log('Render from SearchResultItem');
   const clickMethod = () => {
     handleClick(symbol);
   };
 
   return (
     <div className="stock-list-item" onClick={clickMethod}>
-      <span><b>Symbol:</b> {symbol} </span>
-      <span><b>Name:</b> {name}</span>
+      <span className="stock-list-item-detail name"><b>Name:</b> {name}</span>
+      <span className="stock-list-item-detail symbol"><b>Symbol:</b> {symbol} </span>
     </div>
   )
 }

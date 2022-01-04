@@ -10,7 +10,7 @@ const getStockData = (overview: StockOverviewRaw, quote: GlobalQuoteRaw): StockD
 }
 
 // This method feels sloppy. The keys on the data returned by the API are
-// whack and without a schema provided by the API its tough to know if 
+// whack and without a schema provided by the API its tough to know if
 // all of this is necessary
 const getQuoteData = (quote: GlobalQuoteRaw): GlobalQuote =>  {
   const keys = Object.keys(quote['Global Quote']);
@@ -20,7 +20,10 @@ const getQuoteData = (quote: GlobalQuoteRaw): GlobalQuote =>  {
     formattedObject[editedKey] = quote['Global Quote'][key];
   });
   const globalQuote: GlobalQuote = {
-    changePercentage: formattedObject['change percent']
+    changePercentage: formattedObject['change percent'],
+    high: formattedObject['high'].slice(0, -2),
+    low: formattedObject['low'].slice(0, -2),
+    price: formattedObject['price'].slice(0, -2)
   }
   return globalQuote;
 }
