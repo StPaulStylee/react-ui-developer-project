@@ -2,6 +2,9 @@ import { StockName } from "../models/StockName.model";
 import { SymbolSearch, SymbolSearchResult } from "../models/SymbolSearch.model";
 
 const formatSearchResults = (results: SymbolSearchResult): StockName[] => {
+  if (!results.bestMatches) {
+    throw Error();
+  }
   const formattedData = results.bestMatches.map(result => {
     return mapStockName(result);
   });

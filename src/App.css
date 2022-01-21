@@ -82,9 +82,13 @@
   padding: 1em;
 }
 
-.selected-stock-container.border-right {
+.selected-stock-container {
   border-right: 1px solid black;
   padding-right: 1em;
+}
+
+.selected-stock-container:last-child {
+  border-right: none;
 }
 
 .remove-container {
@@ -117,4 +121,11 @@
 .selected-stocks-section,
 .stock-input-section {
   margin-bottom: 1em;
+}
+
+.generic-error {
+  border: 1px solid red;
+  color: red;
+  margin-bottom: 1em;
+  text-align: center;
 }

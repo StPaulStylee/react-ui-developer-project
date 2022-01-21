@@ -5,24 +5,29 @@ import { getDataFromFetch } from '../utilities/fetchUtility';
 import { formatSearchResults } from '../utilities/searchResultUtility';
 
 interface StockInputProps {
-  setSearchResults: Dispatch<SetStateAction<StockName[]>>
+  setSearchResults: Dispatch<SetStateAction<StockName[]>>;
+  setHasError: Dispatch<SetStateAction<boolean>>;
 }
 
-const StockInput = ({ setSearchResults }: StockInputProps) => {
+const StockInput = ({ setSearchResults, setHasError }: StockInputProps) => {
   const [currentSearch, setCurrentSearch] = useState('');
 
   const submitSearch = async (event: MouseEvent) => {
     event.preventDefault();
-    const trimmedSearch = currentSearch.trim();
-    if (!trimmedSearch) {
-      alert('Bruh... Ya gotta enter a valid search.');
-      return;
+    try {
+      const trimmedSearch = currentSearch.trim();
+      if (!trimmedSearch) {
+        alert('Bruh... Ya gotta enter a valid search.');
+        return;
+      }
+      const symbolResponse = await fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${currentSearch}&apikey=Q9SOLJTLGQ84PKLR`);
+      const results = await getDataFromFetch<SymbolSearchResult>(symbolResponse);
+      const formattedResults = formatSearchResults(results)
+      setSearchResults(formattedResults);
+      setHasError(false);
+    } catch {
+      setHasError(true);
     }
-    // update this call to take in a config which pulls values from .env
-    const symbolResponse = await fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${currentSearch}&apikey=Q9SOLJTLGQ84PKLR`);
-    const results = await getDataFromFetch<SymbolSearchResult>(symbolResponse);
-    const formattedResults = formatSearchResults(results)
-    setSearchResults(formattedResults);
   }
 
   const clearSearch = (event: MouseEvent) => {

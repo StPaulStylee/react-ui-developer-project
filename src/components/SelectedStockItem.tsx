@@ -3,17 +3,13 @@ import { StockData } from "../models/StockData.model";
 
 interface SelectedStockItemProps {
   data: StockData;
-  setSelectedStocks: Dispatch<SetStateAction<StockData[]>>
+  setSelectedStocks: Dispatch<SetStateAction<StockData[]>>;
   border: boolean;
 }
 
 const SelectedStockItem = ({ data, setSelectedStocks, border }: SelectedStockItemProps) => {
   const setPercentChangeClass = (percentValue: string): string => {
     return parseInt(percentValue) <= 0 ? 'percent-negative' : 'percent-positive';
-  }
-
-  const setContainerClass = (needsBorder: boolean) => {
-    return needsBorder ? "selected-stock-container border-right" : "selected-stock-container"
   }
 
   const removeFromSelectedStocks = () => {
@@ -24,7 +20,7 @@ const SelectedStockItem = ({ data, setSelectedStocks, border }: SelectedStockIte
   }
 
   return (
-    <div className={setContainerClass(border)}>
+    <div className="selected-stock-container">
       {!data ? <div className="select-stock-undefined"><p>Search for a stock by symbol or name and select up to three(3) results to see more details...</p></div> :
       <div className="selected-stock-item">
         <div className="remove-container"><span className="remove" onClick={removeFromSelectedStocks}>Remove</span></div>

@@ -13,6 +13,9 @@ const getStockData = (overview: StockOverviewRaw, quote: GlobalQuoteRaw): StockD
 // whack and without a schema provided by the API its tough to know if
 // all of this is necessary
 const getQuoteData = (quote: GlobalQuoteRaw): GlobalQuote =>  {
+  if (!quote['Global Quote']) {
+    throw Error();
+  }
   const keys = Object.keys(quote['Global Quote']);
   const formattedObject: any = {};
   keys.forEach(key => {
